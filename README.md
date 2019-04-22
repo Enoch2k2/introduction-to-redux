@@ -35,6 +35,29 @@ dispatch({type: "ADD_TODO", todo: {title: "Take a break from coding", completed:
 
 ### Actions (functions)
 We also call functions actions. These actions are designed to create an object that we send our reducers.
+```
+function fetchMovies(){
+  return {
+    type: "GET_MOVIES"
+  }
+}
+
+dispatch(fetchMovies());
+
+
+later on with Rails...
+
+function fetchMovies(){
+  return dispatch => {
+    dispatch({type: "LOADING"});
+    return fetch("/movies")
+      .then(resp => resp.json())
+      .then(movies => dispatch({type: "GET_MOVIES", payload: movies}))
+  }
+}
+
+Will discuss this at a later study group ^^^
+```
 
 ## Redux Flow
 Without Rails Api
